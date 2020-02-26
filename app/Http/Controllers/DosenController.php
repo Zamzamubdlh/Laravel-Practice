@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class DosenController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $dosen = Dosen::all();
@@ -34,7 +38,7 @@ class DosenController extends Controller
         return view('dosen.show',compact('dosen'));
     }
 
-    public function edit(Dosen $dosen)
+    public function edit($id)
     {
         $dosen = Dosen::findOrFail($id);
         return view('dosen.edit',compact('dosen'));
@@ -52,7 +56,7 @@ class DosenController extends Controller
 
     public function destroy($id)
     {
-        $dosen = Dosen::finOrFail($id)->delete();
+        $dosen = Dosen::findOrFail($id)->delete();
         return redirect()->route('dosen.index')
                 ->with(['message'=>'Dosen berhasil dihapus']);
     }
