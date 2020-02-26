@@ -15,6 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Blade Template
+Route::get('beranda', function()
+{
+    return view('beranda');
+});
+
+Route::get('kontak', function()
+{
+    return view('kontak');
+});
+
+Route::get('tentang', function()
+{
+    return view('tentang');
+});
+
+Route::get('eloquent', function()
+{
+    return view('eloquent');
+});
+
+Route::get('eloquent-pra', function()
+{
+    return view('eloquent-pra');
+});
+
 // Import Model
 use App\Mahasiswa;
 use App\Dosen;
@@ -95,3 +121,9 @@ Route::get('eloquent-pra', function()
     $mahasiswa1 = Mahasiswa::with('wali','dosen','hobi')->get()->take(1);
     return view('eloquent-pra',compact('mahasiswa1'));
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Crud
+Route::resource('dosen','DosenController');
