@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Dosen;
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-        {
-            $dosen = Dosen::all();
-            return view('dosen.index', compact('dosen'));
-        }
+    {
+        $dosen = Dosen::all();
+        return view('dosen.index',compact('dosen'));
+    }
 
     public function create()
     {
@@ -28,45 +24,36 @@ class DosenController extends Controller
         $dosen->nama = $request->nama;
         $dosen->nipd = $request->nipd;
         $dosen->save();
-        return redirect()->route('dosen.index')->with(['message'=>'Dosen Berhasil Dibuat']);
+        return redirect()->route('dosen.index')
+                ->with(['message'=>'Dosen berhasil dibuat']);
     }
 
     public function show($id)
     {
-        //
+        $dosen = Dosen::findOrFail($id);
+        return view('dosen.show',compact('dosen'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Dosen $dosen)
     {
-        //
+        $dosen = Dosen::findOrFail($id);
+        return view('dosen.edit',compact('dosen'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $dosen = Dosen::findOrFail($id);
+        $dosen->nama = $request->nama;
+        $dosen->nipd = $request->nipd;
+        $dosen->save();
+        return redirect()->route('dosen.index')
+                ->with(['message'=>'Dosen berhasil diedit']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $dosen = Dosen::finOrFail($id)->delete();
+        return redirect()->route('dosen.index')
+                ->with(['message'=>'Dosen berhasil dihapus']);
     }
 }
