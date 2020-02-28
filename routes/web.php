@@ -125,5 +125,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Crud
+// Crud Laravel Yang Ini!!!
 Route::resource('dosen','DosenController');
+Route::resource('hobi','HobiController');
+Route::resource('mahasiswa','MahasiswaController');
+Route::resource('wali','WaliController');

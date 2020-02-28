@@ -10,8 +10,8 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    Data Dosen
-                    <a href="{{route('dosen.create')}}" class="float-right">
+                    Data Wali
+                    <a href="{{route('wali.create')}}" class="float-right">
                         Tambah Data
                     </a>
                 </div>
@@ -21,24 +21,24 @@
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
-                                    <th>Nama</th>
-                                    <th>NIPD</th>
+                                    <th>Nama Wali</th>
+                                    <th>Nama Mahasiswa</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no=1; @endphp
-                                @foreach($dosen as $data)
+                                @foreach($wali as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
                                     <td>{{$data->nama}}</td>
-                                    <td>{{$data->nipd}}</td>
+                                    <td>{{$data->mahasiswa->nama}}</td>
                                     <td>
-                                        <form action="{{route('dosen.destroy',$data->id)}}" method="post">
+                                        <form action="{{route('wali.destroy',$data->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{route('dosen.show',$data->id)}}" class="btn btn-outline-warning">Lihat</a> |
-                                            <a href="{{route('dosen.edit',$data->id)}}" class="btn btn-outline-primary">Edit</a> |
+                                            <a href="{{route('wali.show',$data->id)}}" class="btn btn-outline-warning">Lihat</a> |
+                                            <a href="{{route('wali.edit',$data->id)}}" class="btn btn-outline-primary">Edit</a> |
                                             <button type="submit" onclick="return confirm('Apakah Anda Yakin ?')" class="btn btn-outline-danger">Hapus</button>
                                         </form>
                                     </td>

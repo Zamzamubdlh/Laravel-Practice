@@ -29,7 +29,7 @@ class DosenController extends Controller
         $dosen->nipd = $request->nipd;
         $dosen->save();
         return redirect()->route('dosen.index')
-                ->with(['message'=>'Dosen berhasil dibuat']);
+                ->with(['message'=>'Data Dosen Berhasil Di Buat']);
     }
 
     public function show($id)
@@ -51,13 +51,13 @@ class DosenController extends Controller
         $dosen->nipd = $request->nipd;
         $dosen->save();
         return redirect()->route('dosen.index')
-                ->with(['message'=>'Dosen berhasil diedit']);
+                ->with(['message'=>'Data Dosen Berhasil Di Edit']);
     }
 
     public function destroy($id)
     {
         $dosen = Dosen::findOrFail($id)->delete();
         return redirect()->route('dosen.index')
-                ->with(['message'=>'Dosen berhasil dihapus']);
+                ->with(['message'=>'Dosen Berhasil Di Hapus']);
     }
 }
